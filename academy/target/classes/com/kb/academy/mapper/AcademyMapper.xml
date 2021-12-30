@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.academy.mapper.AcademyMapper">
+<select id="getReferenceList" resultType="com.kb.academy.domain.ReferenceVO" >
+	SELECT * FROM reference ORDER BY num desc limit 0,5 
+</select>
+<select id="getReferenceList1" resultType="com.kb.academy.domain.ReferenceVO" >
+	SELECT * FROM reference where fileCode = '0100' ORDER BY num desc limit 0,5 
+</select>
+<select id="getReferenceList2" resultType="com.kb.academy.domain.ReferenceVO" >
+	SELECT * FROM reference where fileCode = '0200' ORDER BY num desc limit 0,5  
+</select>
+<select id="getReferenceList3" resultType="com.kb.academy.domain.ReferenceVO" >
+	SELECT * FROM reference where fileCode = '0300' ORDER BY num desc limit 0,5  
+</select>
+<select id="getReferenceListPage" resultType="com.kb.academy.domain.ReferenceVO" >
+<![CDATA[
+	SELECT * FROM reference where fileCode = #{fileCode} ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+
+</select>
+<select id="getReferenceCount" resultType="int" >
+	SELECT count(*) FROM reference where fileCode = #{fileCode} 
+</select>
+<insert id="setSignUp">
+	INSERT INTO student (writerId,pw,pw2,name) 
+	VALUES (#{writerId},#{pw},#{pw2},#{name})
+</insert>
+<select id="getReferenceView" resultType="com.kb.academy.domain.ReferenceVO" >
+	SELECT * FROM reference where num = #{num} 
+</select>
+
+<select id="setLoginInfo" resultType="com.kb.academy.domain.LoginVO" >
+	SELECT * FROM student where writerId = #{writerId} and pw = #{pw}
+</select>
+
+<select id="getGradeManagementListPage" resultType="com.kb.academy.domain.GradeManagementVO" >
+<![CDATA[
+	SELECT * FROM grademanagement where fileCode = #{fileCode} and writerId = #{writerId} ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+</select>
+
+<select id="getAllGradeManagementListPage" resultType="com.kb.academy.domain.GradeManagementVO" >
+<![CDATA[
+	SELECT * FROM grademanagement where fileCode = #{fileCode} ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+
+</select>
+<select id="getGradeManagementCount" resultType="int" >
+	SELECT count(*) FROM grademanagement where fileCode = #{fileCode} and writerId = #{writerId}
+</select>
+
+<select id="getAllGradeManagementCount" resultType="int" >
+	SELECT count(*) FROM grademanagement where fileCode = #{fileCode} 
+</select>
+
+<select id="getGradeManagementView" resultType="com.kb.academy.domain.GradeManagementVO" >
+	select * from grademanagement where num = #{num} 
+</select>
+
+<select id="getGradeManagementFileView" resultType="com.kb.academy.domain.GradeManagementVO" >
+	select * from grademanagement g join tb_file tb on g.num = tb.board_idx where g.num = #{num} 
+</select>
+
+<select id="getStudentListPage" resultType="com.kb.academy.domain.LoginVO" >
+<![CDATA[
+	SELECT * FROM student limit #{pageStart}, #{perPageNum} 
+]]>
+
+</select>
+<select id="getStudentCount" resultType="int" >
+	SELECT count(*) FROM student
+</select>
+<select id="AcademyStudentView" resultType="com.kb.academy.domain.LoginVO" >
+	SELECT * FROM student where writerId = #{writerId} 
+</select>
+
+<update id="AcademyStudentUpdate">
+	UPDATE student SET loginRole = #{loginRole} ,name = #{name} where writerId = #{writerId}
+</update>
+
+<select id="getGradeManagementTCount" resultType="int" >
+	SELECT count(*) FROM grademanagement WHERE fileCode = #{fileCode} and title like CONCAT('%',#{kwd},'%')
+</select>
+<select id="getGradeManagementICount" resultType="int" >
+	SELECT count(*) FROM grademanagement WHERE fileCode = #{fileCode} and writerId like CONCAT('%',#{kwd},'%') 
+</select>
+<select id="getGradeManagementTICount" resultType="int" >
+	SELECT count(*) FROM grademanagement WHERE fileCode = #{fileCode} and title like CONCAT('%',#{kwd},'%') OR writerId like CONCAT('%',#{kwd},'%')
+</select>
+
+<select id="getGradeManagementTListPage" resultType="com.kb.academy.domain.GradeManagementVO" >
+<![CDATA[
+	SELECT * FROM grademanagement WHERE fileCode = #{fileCode} and title like CONCAT('%',#{kwd},'%') ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+
+</select>
+<select id="getGradeManagementIListPage" resultType="com.kb.academy.domain.GradeManagementVO" >
+<![CDATA[
+	SELECT * FROM grademanagement WHERE fileCode = #{fileCode} and writerId like CONCAT('%',#{kwd},'%') ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+
+</select>
+<select id="getGradeManagementTIListPage" resultType="com.kb.academy.domain.GradeManagementVO" >
+<![CDATA[
+	SELECT * FROM grademanagement WHERE fileCode = #{fileCode} and title like CONCAT('%',#{kwd},'%') OR writerId like CONCAT('%',#{kwd},'%') ORDER BY num desc limit #{pageStart}, #{perPageNum}
+]]>
+
+</select>
+
+<insert id="academyGradeManagementInsert">
+	INSERT INTO grademanagement (title,content,grade,ranking,fileCode,writerId)
+	VALUES (#{title},#{content},#{grade},#{ranking},#{fileCode},#{writerId})
+</insert>
+
+<select id="getacademyGradeManagementMaxNum" resultType="int">
+	SELECT num FROM grademanagement WHERE num = (SELECT max(num) FROM grademanagement where fileCode = #{fileCode})
+</select>
+
+<insert id="academyGradeManagementFileInsert">
+	INSERT INTO tb_file (board_idx,fileName,realFileName,fileSize,creaId)
+	VALUES (#{board_idx},#{fileName},#{realFileName},#{fileSize},#{creaId})
+</insert>
+
+<insert id="academyReferenceInsert">
+	INSERT INTO reference (title,content,writerName,fileCode,writerId)
+	VALUES (#{title},#{content},#{writerName},#{fileCode},#{writerId})
+</insert>
+
+<select id="academyReferenceMaxNum" resultType="int">
+	SELECT num FROM reference WHERE num = (SELECT max(num) FROM reference where fileCode = #{fileCode})
+</select>
+
+<insert id="academyReferenceFileInsert">
+	INSERT INTO rtb_file (board_idx,fileName,realFileName,fileSize,creaId)
+	VALUES (#{board_idx},#{fileName},#{realFileName},#{fileSize},#{creaId})
+</insert>
+
+
+<update id="academyGradeManagementView">
+	UPDATE grademanagement SET title = #{title} ,content = #{content} ,grade = #{grade} ,ranking = #{ranking} ,
+	fileCode = #{fileCode} ,writerId =  #{writerId} where num = #{num} 
+</update>
+
+<update id="academyReferenceView">
+	UPDATE reference SET title = #{title} ,content = #{content} ,writerName = #{writerName},
+	fileCode = #{fileCode} ,writerId =  #{writerId} where num = #{num} 
+</update>
+
+<select id="getReferenceFileView" resultType="com.kb.academy.domain.ReferenceVO" >
+	select * from reference r join rtb_file tb on r.num = tb.board_idx where r.num = #{num} 
+</select>
+
+<delete id="AcademyDel">
+	delete from ${table} where ${condition} = #{conditionVal}
+</delete>
+</mapper>
+
+
+
+
+
+
