@@ -29,12 +29,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#tf-home" class="scroll">Home</a></li>
-                <li><a href="#tf-services" class="scroll">About</a></li>
-                <li><a href="#tf-features" class="scroll">Program</a></li>
-                <li><a href="#tf-works" class="scroll">Gallery</a></li>
-                <li><a href="#tf-features1" class="scroll">Reference</a></li>
-                <li><a href="#tf-features2" class="scroll">Grade management</a></li>
+                <li><a href="http://localhost:8080/academy/" class="scroll">Home</a></li>
+                <li><a href="http://localhost:8080/academy/" class="scroll">About</a></li>
+                <li><a href="http://localhost:8080/academy/" class="scroll">Program</a></li>
+                <li><a href="http://localhost:8080/academy/" class="scroll">Gallery</a></li>
+                <li><a href="AcademyReferenceList" class="scroll">Reference</a></li>
+                <li><a href="AcademyGradeManagementList" class="scroll">Grade management</a></li>
                 <li><a href="#tf-contact" class="scroll">Contact</a></li>
                 <c:choose>
                 	<c:when test="${loginId != null}">
