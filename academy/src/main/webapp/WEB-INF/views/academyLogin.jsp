@@ -61,7 +61,7 @@
 </head>
 <body>
   <body>
-  <jsp:include page="menuBar.jsp"></jsp:include>
+  <jsp:include page="menuBar2.jsp"></jsp:include>
 
     <div class="container"> <!-- container -->
             <div class="section-header">

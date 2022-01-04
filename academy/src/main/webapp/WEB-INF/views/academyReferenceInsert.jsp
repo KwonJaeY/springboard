@@ -67,7 +67,7 @@
 </c:if>
   <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBar2.jsp"></jsp:include>
     ================================================== -->
      <div id="tf-contact">
 

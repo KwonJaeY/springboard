@@ -35,7 +35,7 @@
                 <li><a href="http://localhost:8080/academy/" class="scroll">Gallery</a></li>
                 <li><a href="AcademyReferenceList" class="scroll">Reference</a></li>
                 <li><a href="AcademyGradeManagementList" class="scroll">Grade management</a></li>
-                <li><a href="#tf-contact" class="scroll">Contact</a></li>
+                <li><a href="http://localhost:8080/academy/" class="scroll">Contact</a></li>
                 <c:choose>
                 	<c:when test="${loginId != null}">
                 	    <li><a href = "AcademyLogOut">이름=[${loginName}],권한=[${loginRole}] 로그아웃 </a></li>                		
