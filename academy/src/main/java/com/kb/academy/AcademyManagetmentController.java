@@ -186,11 +186,11 @@ public class AcademyManagetmentController{
 			model.addAttribute("Paging", PagingVO);
 			}
 		}
-		else if(rCol == "title"){			
+		else if(rCol.equals("title")){			
 			PagingVO.setTotalCount(academyService.getGradeManagementTCount(cri));
 			model.addAttribute("rlist", academyService.getGradeManagementTListPage(cri));
 			model.addAttribute("Paging", PagingVO);
-		}else if (rCol == "name") {
+		}else if (rCol.equals("name")) {
 			PagingVO.setTotalCount(academyService.getGradeManagementICount(cri));
 			model.addAttribute("rlist", academyService.getGradeManagementIListPage(cri));
 			model.addAttribute("Paging", PagingVO);

@@ -109,12 +109,12 @@
             </div>
         </div>
 		<form method = "post" action="" class = "pull-right" style = "margin-right:200px">	
-		<input type="hidden" name="rCol" id="loginRole" value="rtitle_rWriterName">		
+		<input type="hidden" name="rCol" id="rCol" value="title_name">		
 			<div>Total : ${Paging.totalCount }</div>		
-		      <SELECT name='col' > <!-- 검색 컬럼 -->
+		      <SELECT name='col' id = "col"> <!-- 검색 컬럼 -->
 		        <OPTION value='title_name' ${"title_name" eq param.rCol ? "selected": ""}>제목+이름</OPTION>				  
-		        <OPTION value='title' ${"title" eq param.mCol ? "selected": ""}>제목</OPTION>
-		        <OPTION value='name' ${"name" eq param.mCol ? "selected": ""}>이름</OPTION>			        
+		        <OPTION value='title' ${"title" eq param.rCOl ? "selected": ""}>제목</OPTION>
+		        <OPTION value='name' ${"name" eq param.rCOl ? "selected": ""}>이름</OPTION>			        
 		      </SELECT>
 			    <input type='text' name='kwd' value='' placeholder="검색어를 입력해주세요.">
 			    <button class = "btn btn-default" type='submit'>검색</button>   
@@ -221,6 +221,7 @@
 	<script type="text/javascript">
 	$("#col").on("change",function(){
 		$("#rCol").val($(this).val());
+		console.log($("#rCol").val());
 	});
 	</script>	
   </body>
